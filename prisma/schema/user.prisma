@@ -1,0 +1,15 @@
+model User {
+    id           Int           @id @default(autoincrement())
+    name         String
+    email        String        @unique
+    password     String
+    role         Role[]
+    createdAt    DateTime      @default(now())
+    updatedAt    DateTime      @updatedAt
+    descriptions Description[]
+}
+
+enum Role {
+    ADMIN
+    USER
+}

@@ -26,7 +26,21 @@ export class ProductsService {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return this.databaseService.product.findUnique({
       where: { id },
-      include: { description: true, reviews: true, tag: true },
+      include: {
+        description: {
+          include: {
+            user: {
+              select: {
+                name: true,
+                email: true,
+                id: true,
+              },
+            },
+          },
+        },
+        reviews: true,
+        tag: true,
+      },
     });
   }
 
